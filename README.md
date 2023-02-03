@@ -5,8 +5,6 @@ odpowiedzi na postawione pytanie: Co mogło mieć wpływ na przeżycie pasażer�
 W celu odpowiedzenia na to pytanie należy najpierw zadać pytanie: Ile osób przeżyło, a ile zginęło? 
 
 df = train_file["Survived"].sum()
-train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
 sns.catplot(data=train_file, x="Survived", kind="count")
 plt.show()
 print(df)
@@ -15,8 +13,6 @@ Jak widać na zwracanym przez powyższy kod wykresie z 891 zarejestrowanych osó
 
 Czy występowała zatem zależność pod względem klasy biletu zakupionego przez pasażera,a przeżywalnością?
 
-train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
 sns.catplot(data=train_file, x="Pclass",  kind="count", hue="Survived")
 plt.show()
 
@@ -27,15 +23,11 @@ Na wykresie prezentującym zależność między wiekiem, ceną biletu a przeżyw
 osoby, które przeżyły w klasie niższej to były dzieci, podczas gdy wraz z ceną biletu wiek jednostki, która przeżyła 
 rośnie. Widać to w wykresie prezentowanym przez kod poniżej.
 
-train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
 sns.relplot(data=train_file, x="Fare", y="Age", hue="Survived")
 plt.show()
 
 Jak zatem prezentuje się przeżywalność jednostki w zależności od samego wieku?
 
-train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
 sns.kdeplot(data=train_file, x="Age", hue="Survived")
 plt.show()
 
@@ -43,8 +35,6 @@ Większość dzieci przeżyła, zatem można śmiało wnioskować, że dzieci mi
 Skoro wiemy już, że priorytetowo ewakuowane były dzieci, to sprawdźmy kto był priorytetyzowany jeśli chodzi o płeć,
 kobiety czy mężczyźni?
 
-train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
 sns.catplot(data=train_file, x="Sex", hue="Survived", kind="count")
 plt.show()
 
