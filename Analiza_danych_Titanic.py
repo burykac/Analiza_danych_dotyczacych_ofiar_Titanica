@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-train_file = pd.read_csv(r"D:\titanic\train.csv")
+train_file = pd.read_csv(r".\train.csv")
 train_file = train_file.drop(["SibSp", "Ticket", "Parch", "Cabin", "Embarked"], axis=1)
 sns.set_style("darkgrid")
 def menu():
@@ -15,37 +15,39 @@ def menu():
                                     "D - relacja między płcią, a przeżywalnością. \n"
                                     "E - histogram wieku ofiar. \n"
                                     "F - relacja między opłatą pasażerską, a przeżywalnością. \n"
-                                    ""))
-            if jakie_dane1 == "A" or jakie_dane1 == "a":
-                train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-                train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
-                sns.catplot(data=train_file, x="Survived", kind="count")
-                plt.show()
-            elif jakie_dane1 == "B" or jakie_dane1 == "b":
-                train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-                train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
-                sns.catplot(data=train_file, x="Pclass",  kind="count", hue="Survived")
-                plt.show()
-            elif jakie_dane1 == "C" or jakie_dane1 == "c":
-                train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-                train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
-                sns.distplot(train_file[train_file["Survived"]=="No"]["Age"], bins=20)
-                sns.distplot(train_file[train_file["Survived"]=="Yes"]["Age"], bins=20)
-                plt.show()
-            elif jakie_dane1 == "D" or jakie_dane1 == "b":
-                train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-                train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
-                sns.catplot(data=train_file, x="Sex", hue="Survived", kind="count")
-                plt.show()
-            elif jakie_dane1 == "E" or jakie_dane1 == "e":
-                train_file["Age"].plot.hist(bins=20)
-                plt.show()
-            elif jakie_dane1 == "F" or jakie_dane1 == "f":
-                train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
-                train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
-                sns.distplot(train_file[train_file["Survived"]=="No"]["Fare"], bins=20)
-                sns.distplot(train_file[train_file["Survived"]=="Yes"]["Fare"], bins=20)
-                plt.show()
-            else:
-                break
+                                    "Q - quit").lower())
+            match jakie_dane1:
+                case "a":
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
+                    sns.catplot(data=train_file, x="Survived", kind="count")
+                    plt.show()
+                case "b":
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
+                    sns.catplot(data=train_file, x="Pclass",  kind="count", hue="Survived")
+                    plt.show()
+                case "c":
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
+                    sns.distplot(train_file[train_file["Survived"]=="No"]["Age"], bins=20)
+                    sns.distplot(train_file[train_file["Survived"]=="Yes"]["Age"], bins=20)
+                    # legenda ktory kolor ktory
+                    plt.show()
+                case "d":
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
+                    sns.catplot(data=train_file, x="Sex", hue="Survived", kind="count")
+                    plt.show()
+                case "e":
+                    train_file["Age"].plot.hist(bins=20)
+                    plt.show()
+                case "f":
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 0] = "No"
+                    train_file.loc[:, "Survived"][train_file["Survived"] == 1] = "Yes"
+                    sns.distplot(train_file[train_file["Survived"]=="No"]["Fare"], bins=20)
+                    sns.distplot(train_file[train_file["Survived"]=="Yes"]["Fare"], bins=20)
+                    plt.show()
+                case "q":
+                    break
 menu()
